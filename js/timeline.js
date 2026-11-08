@@ -1,0 +1,5 @@
+import "./state.js";
+import { state } from "./layout.js";
+let active = "All events";
+function render() { const filters = ["All events", "Family", "Career", "Relationships", "Health"]; const list = state.timeline.filter(item => active === "All events" || item.category === active); document.querySelector("#app").innerHTML = `<article class="summary-card"><div><span class="tag">LIFE TIMELINE</span><h2>Your story, one moment at a time</h2><p>Every chapter brought you here.</p></div></article><div class="filter-row">${filters.map(filter => `<button class="filter ${active === filter ? "active" : ""}" data-filter="${filter}">${filter}</button>`).join("")}</div><div class="timeline-list">${list.map(item => `<article class="timeline-item"><div class="timeline-age">${item.age}<small>AGE</small></div><div><h3>${item.title}</h3><p>${item.detail}</p></div><span class="time-tag">${item.time}</span></article>`).join("")}</div>`; document.querySelectorAll("[data-filter]").forEach(button => button.addEventListener("click", () => { active = button.dataset.filter; render(); })); }
+render();

@@ -1,0 +1,5 @@
+import "./state.js";
+import { showToast } from "./layout.js";
+const course = (icon, title, detail, action) => `<article class="course-card"><div><span class="course-icon">${icon}</span><div><h3>${title}</h3><p>${detail}</p></div></div><button class="button button-secondary course-action">${action}</button></article>`;
+document.querySelector("#app").innerHTML = `<article class="summary-card"><div><span class="tag">LEARNING</span><h2>Keep growing into your next chapter</h2><p>Skills become stories too.</p></div><button class="button button-primary course-action">Browse courses</button></article><div class="course-grid">${course("▣", "Bachelor of Design", "Completed 2022", "View certificate")}${course("✦", "UX Research Basics", "Completed 2023", "View certificate")}${course("⌁", "Product Thinking", "4 of 8 lessons complete", "Continue learning")}</div>`;
+document.querySelectorAll(".course-action").forEach(button => button.addEventListener("click", () => showToast(`${button.textContent} opened.`)));
